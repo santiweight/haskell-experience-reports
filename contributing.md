@@ -1,0 +1,3 @@
+TODO How to contribute a report. How to write a report efficiently with tips on planning a report
+
+Maybe rename this file? Contributing doesn't sound like writing the report...

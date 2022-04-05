@@ -46,6 +46,7 @@ Note that you should make your grades relative to other realistic choices. Don't
 | Customer experience    |   S   |
 
 - [Background](#background)
+  - [Authors](#authors)
   - [Problem Background](#problem-background)
   - [Team Background](#team-background)
 - [Choosing Haskell](#choosing-haskell)
@@ -76,6 +77,29 @@ The background section is used to situate the reader and to establish a sense of
 
 This example tells the story from project inception; but you should tell the story as you experienced it - don't make things up ;)
 -->
+
+## Authors
+
+<!--
+Who is writing the article? "writing" in the loose sense - who is claiming authorship.
+
+Read the `principles.md` for some ideas on who would be a great addition to the authors section for adding credibility to the report.
+
+Try to keep the background short and sweet (you've seen those 1 sentence blurbs many times) - highlight:
+ - non-Haskell experience
+ - industry experience
+ - managerial experience
+ - large numbers of years look good ;)
+ - TODO suggestions welcome
+-->
+
+John Doe is a industry veteran with 20 years of software engineering experience. For 10 years he worked on the Java compiler at Oracle, but for ten years has been developing compilers in functional programming languages.
+
+<!--
+Could someone write a fake systems career summary for me XD
+-->
+
+Jane Doe has been working [INSERT example background of systems engineer]...
 
 ## Problem Background
 
