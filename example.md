@@ -66,7 +66,7 @@ Explanations and examples for each section can be found by going to each subhead
   - [Code Maintenance](#code-maintenance)
 - [Deployment](#deployment)
   - [Runtime](#runtime)
-  - [Errors/bugs](#errorsbugs)
+  - [Errors and Debugging](#errors-and-debugging)
   - [Customer experience](#customer-experience)
 - [Haskell at ACME](#haskell-at-acme)
   - [Hiring](#hiring)
@@ -170,7 +170,7 @@ Focus on what works and what doesn't. Try to focus on your current issues, and a
 
 Don't avoid Haskell's issues, just keep the issues contemporary. The same goes for languages you might compare Haskell against.
 
-Note that many of your complaints about upgrading libraries/GHC versions might be better placed in the "Haskell ecosystem" section.
+Note that many of your complaints about upgrading libraries/GHC versions might be better placed in the "Code Maintenance" section.
 -->
 
 ## Infra
@@ -211,7 +211,11 @@ For testing we use the `tasty` testing framework, especially the supplementary l
 ## Developer Tools
 
 <!--
-List your developers' work environment. If your devs use a mix of environments, feel free to list them and explain any difficulties the variety may have caused.
+List your developers' work environment. If your devs use a mix of environments, feel free to list them and explain any difficulties the variety may have caused:
+ - IDE
+ - refactoring tools
+ - linters
+ - code formatters
 -->
 
 We use VS Code and the Haskell extension for our developer environment. We used to use Stack but had to switch due to (at the time) poor integration with the Haskell Language Server (HLS). Since switching to Cabal, we have had few problems getting set up with HLS, besides for the occasional 20s restart.
@@ -222,24 +226,38 @@ For linting we use hlint. Although the HLS integration is sometimes flakey, we h
 
 # The Developer Experience
 
+<!--
+This section should aim to convey the qualitative experience of using Haskell in production. Here it is appropriate to mention quantitative metrics (such as time to ramp up on a team) but also qualitative experiences (such as "I like/hated using Haskell")
+-->
+
 ## Onboarding
+
+<!--
+How was the experience of onboarding new developers to the project. Be sure to consider the backgrounds of the new team members and how industry experience and Haskell familiarity affect learning a new Haskell project.
+-->
 
 For us, onboarding Haskell has been little different from other languages, mostly because our engineers have mostly been Haskellers. The one engineer who came from Ocaml had some minor issues (such the aforemention `servant` errors) at first but quickly ramped up.
 
-We have found that, due to Haskell's purity and descriptive type systems, it has been **notably easy** for experienced Haskellers to catch up with the codebase without too much handholding.
+We have found that, due to Haskell's purity and descriptive type systems, it has been **notably easy** for experienced Haskellers to catch up with the codebase without too much handholding. Most of the time, our experienced Haskellers were quite content to read an introductory readme to some part of the codebase, and then fill in the details by reading functions' type signatures.
 
 ## Engineer Satisfaction
 
-Our team, without exception, enjoys using Haskell (even our mildly-converted Ocaml engineer). Compilers are perhaps the best application of Haskell and our employees' experience reflects that. Our employees are all excited to work on the project and improve the codebase.
+<!--
+Purely subjective: do engineers like using Haskell? Do they feel engaged with the project and do they enjoy working on it?
+-->
+
+Our team, without exception, enjoys using Haskell (even our mildly-converted Ocaml engineer). Compilers are perhaps the best application of Haskell and our employees' experience reflects that. Our employees are all excited to work on the project and improve the codebase. All of us love using Haskell, and for most of us it is our first choice when it comes to programming language.
 
 ## Code Maintenance
 
 <!--
-NOTE: Perhaps we should split up code maintenance into multiple sections???
+TODO: Perhaps we should split up code maintenance into multiple sections???
+
 Code maintenance is a rather large section that includes:
  - Code review
  - Refactors/rewrites
- - Ecosystem and library stability
+ - Ecosystem and library stability (particularly bugs and backwards compatibility)
+ - GHC version bumps
 -->
 
 Code maintenance is another commonly-cited advantage of using Haskell, and we have found the ease of maintenance to be overall excellent, but have wanted for better refactoring tools.
@@ -248,7 +266,11 @@ Code refactors are far easier in Haskell than they were in the Java codebase, mo
 
 The biggest downside we have found, however, is that common refactoring tools in Java are either not available or uncommon in Haskell. For example, in Java, a right click in the IDE will allow an engineer to rename all occurrences of an identifier. This lack of such common tooling can be a very real grind at times.
 
-We have also needed to take a purposefully controlled approach to code complexity. In Haskell, code can often be expressed in elegant ways that might be less easy to understand. At times, we have to catch ourselves from making overly-eager Haskelly design choices, and we are careful not to introduce too many fancy Haskellisms at the expense of less-experienced Haskell engineers.
+We have been helped by taking a purposefully controlled approach to code complexity. In Haskell, code can often be expressed in elegant ways that might be less easy to understand. At times, we have to catch ourselves from making overly-eager Haskelly design choices, and we are careful not to introduce too many fancy Haskellisms at the expense of less-experienced Haskell engineers.
+
+Haskell's ecosystem stability is probably Haskell's greatest fault. When it came to less-commonly used libraries, such as diagram libraries, we sometimes had to make version bump PRs ourselves, but many of these PRs have been left unanswered, and so we are stuck on employees' library forks. Thankfully, the same has not occurred for popular libraries, which we have found to be easy to integrate with our libraries' dependencies.
+
+We have not yet experienced any problems with GHC version bumps, and were unaffected by the simplified subsumption changes in GHC 9. At times, we become concerned by some core library churn, such as the suggested changes to Eq of no Neq, or the Data.List monomorphization. Thankfully, whereas before we might have been bitten by such changes, it appears that the core libraries are far more stable and less subject to change than they have been in the past...
 
 # Deployment
 
@@ -266,14 +288,16 @@ We have not yet had any problems with runtime. Our team has extensive experience
 
 We have noted at times that it can be difficult to reason about performance, and so when it comes to optimising the code (which we rarely do), the work has generally been done by senior engineers. Such folk knowledge has included some precise compiler flags to GHC that override some silly defaults and helping other engineers to understand cost-centres when attempting to improvement the runtime.
 
-## Errors/bugs
+## Errors and Debugging
 
-<!-- TODO
+<!--
 Some things to include:
  - Frequency of bugs
  - Nature of bugs
  - Debugging: how easy it to debug? how long to triage bugs
  - How often did the code fail in production? How often were bugs caught in tests
+
+TODO Add an example of debugging in example?
 -->
 
 In our experience, Haskell's reputation of "if it compiles, it works" has been quite true. Whenever we have found certain bugs in our code, we have often been able to ensure they never occur again through strategic use of Haskell's type system. In contrast, the Java code was riddled with recurring bugs, such as mistakes in inter-stage rewrites; and we had some quite awful experiences with Antlr, which caused quite a number of NPE's for us...
