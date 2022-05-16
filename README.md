@@ -1,6 +1,6 @@
 This repo tracks the WIP for Haskell Experience Reports (name suggestions welcome). Literally everything is up for feedback right now; issues or MRs are encouraged.
 
-## Guide
+## How To Write a Report
 
   1. Optional: start with the principles.md to get a feeling for Haskell Report's intent and tone.
   2. Then start reading the example.md report. Note that there are **comments in the markdown** that explain each section etc.
