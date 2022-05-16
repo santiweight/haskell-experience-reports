@@ -39,14 +39,18 @@ Explanations and examples for each section can be found by going to each subhead
 | Engineering Experience |   A+  |
 | ---------------------- | ----- |
 | Onboarding             |   A   |
-| Engineer experience    |   S   |
+| Engineer Satisfaction  |   S   |
 | Code Maintenance       |   A   |
 
 | Deployment             |   S   |
 | ---------------------- | ----- |
 | Runtime                |   A   |
-| Errors/bugs            |   S   |
+| Errors and Debugging   |   S   |
 | Customer experience    |   S   |
+
+<!-- TODO Should there be more sections to hiring -->
+| Hiring                 |   A   |
+| ---------------------- | ----- |
 
 - [Background](#background)
   - [Authors](#authors)
