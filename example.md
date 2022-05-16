@@ -338,9 +338,18 @@ TODO
 
 ## Hiring
 
-We have not had any issues with regards to hiring, though we do wonder whether it would have been so easy without the Haskell connections of our PL team lead.
+<!--
+The experience of acquiring new talent for the team:
+ - access to candidates
+ - quality of candidates
+ - location of candidates (remote/local)
+ - evaluation of candidates
+ - affordability of talent -- TODO is this a reasonable thing to discuss?
+-->
 
-TODO
+We have not had any issues with regards to hiring, in fact it has been rather easy due to connections within the team and Haskellers' eagerness to join a compiler team using Haskell. Most of our team have worked with another member of our team in the past, and those who had not came by personal recommendation. It is worth noting that, while we do have an office on the east coast, only 2 of our team commute to work, and our team is otherwise remote, with an occasional on-site meeting every third month or so.
+
+TODO Is there more to say?
 
 ## Summary
 <!--
